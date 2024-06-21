@@ -1,7 +1,7 @@
 use proc_macro2::TokenStream;
 use quote::TokenStreamExt;
 
-mod trait_impl;
+mod trait_impls;
 
 pub fn derive(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let input = syn::parse_macro_input!(input as syn::DeriveInput);
@@ -21,7 +21,7 @@ fn expanded(input: &syn::DeriveInput) -> TokenStream {
 fn items(input: &syn::DeriveInput) -> syn::Result<Vec<syn::Item>> {
     let mut items = Vec::new();
 
-    trait_impl::add_to_items(&mut items, input)?;
+    trait_impls::add_to_items(&mut items, input)?;
 
     Ok(items)
 }

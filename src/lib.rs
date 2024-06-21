@@ -1,5 +1,5 @@
 #[cfg(feature = "tracing")]
-mod tracing;
+pub mod tracing;
 
 #[cfg(feature = "tracing")]
 pub use tracing::error::TracingError;

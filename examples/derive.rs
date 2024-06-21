@@ -1,3 +1,5 @@
+fn main() {}
+
 #[derive(thisslime::TracingError)]
 #[event(level = ERROR)]
 struct MyError {
@@ -9,5 +11,3 @@ impl std::fmt::Display for MyError {
         f.write_str("my_error")
     }
 }
-
-fn main() {}
