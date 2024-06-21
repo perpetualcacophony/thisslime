@@ -1,22 +1,23 @@
-use attribute_derive::FromAttr as _;
+use attribute_derive::FromAttr;
 use quote::ToTokens;
 use syn::spanned::Spanned;
 
-use crate::tracing_error as derive;
+use core::tracing::attrs;
+use core::tracing::model as tracing;
 
 pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ImplItemFn> {
     let body: Vec<syn::Stmt> = match input.data {
         syn::Data::Struct(ref data) => {
-            let attr = derive::EventAttribute::from_attributes(&input.attrs)?;
+            let attr = attrs::Event::from_attributes(&input.attrs)?;
 
             let tracing_fields = data
                 .fields
                 .iter()
-                .map(derive::tracing::Field::try_from)
+                .map(tracing::Field::try_from)
                 .collect::<Result<_, _>>();
 
             if let Ok(tracing_fields) = tracing_fields {
-                let event = derive::tracing::Event::new(attr.level, tracing_fields, true);
+                let event = tracing::Event::new(attr.level, tracing_fields, true);
                 let stmt: syn::Stmt = syn::parse2(event.into_macro_call().into_token_stream())?;
                 vec![stmt]
             } else {
@@ -26,7 +27,7 @@ pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ImplItemFn> {
         syn::Data::Enum(ref data) => {
             use heck::ToSnakeCase;
 
-            let span = derive::SpanAttribute::from_attributes(&input.attrs)?;
+            let span = attrs::Span::from_attributes(&input.attrs)?;
             let level = span.level;
 
             data.variants
@@ -49,8 +50,8 @@ pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ImplItemFn> {
                         .iter()
                         .find(|attr| attr.path().is_ident("event"))
                     {
-                        let attr = derive::EventAttribute::from_attribute(attr)?;
-                        let event = derive::tracing::Event::new_custom(
+                        let attr = attrs::Event::from_attribute(attr)?;
+                        let event = tracing::Event::new_custom(
                             attr.level,
                             Vec::default(),
                             syn::parse_str("err").unwrap(),

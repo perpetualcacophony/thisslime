@@ -1,5 +1,5 @@
 pub mod field;
-pub(crate) use field::Full as Field;
+pub use field::Full as Field;
 
 pub mod event;
 pub use event::Event;

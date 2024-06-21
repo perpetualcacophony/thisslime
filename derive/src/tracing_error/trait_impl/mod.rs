@@ -6,7 +6,7 @@ fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ItemImpl> {
     let methods = methods::quote(input)?;
 
     Ok(syn::parse_quote!(
-        impl TracingError for #ident {
+        impl ::thisslime::TracingError for #ident {
             #(#methods)*
         }
     ))

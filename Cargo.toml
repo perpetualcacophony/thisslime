@@ -4,4 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-derive = { path = "./derive" }
+derive = { package = "thisslime-derive", path = "./derive", optional = true }
+
+[features]
+default = ["derive", "tracing"]
+tracing = ["derive?/tracing"]

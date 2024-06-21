@@ -1,7 +1,7 @@
 use proc_macro2::TokenStream;
 use quote::quote;
 
-use crate::tracing_error::tracing;
+use crate::tracing::model as tracing;
 
 type CommaPunctuared<T> = syn::punctuated::Punctuated<T, syn::Token![,]>;
 
