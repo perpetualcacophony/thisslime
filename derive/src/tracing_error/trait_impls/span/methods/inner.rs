@@ -12,11 +12,23 @@ pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ImplItemFn> {
                 .map(|variant| {
                     let name = &variant.ident;
 
-                    syn::parse_quote!(
-                        Self::#name(ref inner) => inner
-                    )
+                    if variant
+                        .attrs
+                        .iter()
+                        .any(|attr| attr.path().is_ident("event"))
+                    {
+                        let event = core::tracing::attrs::Event::from_attributes(&variant.attrs)?;
+                        let level = event.level;
+                        Ok(syn::parse_quote!(
+                            Self::#name(ref inner) => ::tracing::
+                        ))
+                    } else {
+                        Ok(syn::parse_quote!(
+                            Self::#name(ref inner) => inner
+                        ))
+                    }
                 })
-                .collect();
+                .collect()?;
 
             let match_body: syn::Stmt = syn::parse_quote!(
                 match self {
