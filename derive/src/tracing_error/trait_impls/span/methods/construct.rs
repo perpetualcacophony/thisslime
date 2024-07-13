@@ -1,7 +1,7 @@
 use attribute_derive::FromAttr;
 
 pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ImplItemFn> {
-    let span = core::tracing::attrs::Span::from_attributes(&input.attrs)?;
+    let span = core::tracing::derive::attrs::Span::from_attributes(&input.attrs)?;
     let level = span.level;
     let span_name = span.name(&input.ident);
 

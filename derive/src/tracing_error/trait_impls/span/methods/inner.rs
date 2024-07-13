@@ -1,8 +1,10 @@
 use attribute_derive::FromAttr;
 use syn::spanned::Spanned;
 
+use core::tracing::derive;
+
 pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ImplItemFn> {
-    let span = core::tracing::attrs::Span::from_attributes(&input.attrs)?;
+    let span = derive::attrs::Span::from_attributes(&input.attrs)?;
 
     let body: Vec<syn::Stmt> = match input.data {
         syn::Data::Enum(ref data) => {
@@ -17,10 +19,13 @@ pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ImplItemFn> {
                         .iter()
                         .any(|attr| attr.path().is_ident("event"))
                     {
-                        let event = core::tracing::attrs::Event::from_attributes(&variant.attrs)?;
+                        let event = derive::attrs::Event::from_attributes(&variant.attrs)?;
                         let level = event.level;
-                        Ok(syn::parse_quote!(
-                            Self::#name(ref inner) => ::tracing::
+                        Ok::<syn::Arm, syn::Error>(syn::parse_quote!(
+                            Self::#name(ref inner) => {
+                                ::tracing::event!(#level, "{}", inner.to_string());
+                                ::thisslime::thisslime_core::tracing::derive::DummyEvent
+                            }
                         ))
                     } else {
                         Ok(syn::parse_quote!(
@@ -28,7 +33,7 @@ pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ImplItemFn> {
                         ))
                     }
                 })
-                .collect()?;
+                .collect::<syn::Result<Vec<syn::Arm>>>()?;
 
             let match_body: syn::Stmt = syn::parse_quote!(
                 match self {
