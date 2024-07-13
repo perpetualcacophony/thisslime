@@ -3,7 +3,7 @@ use proc_macro2::TokenStream;
 
 use quote::{quote, ToTokens};
 
-use crate::tracing::model;
+use crate::tracing::derive::model;
 use model::TracingPrintLevel;
 
 use syn::{spanned::Spanned, Token};
@@ -322,7 +322,7 @@ impl TryFrom<syn::Field> for Full<'_> {
     type Error = syn::Error;
 
     fn try_from(field: syn::Field) -> Result<Self, Self::Error> {
-        let attr = crate::tracing::attrs::Field::from_attributes(&field.attrs)?;
+        let attr = crate::tracing::derive::attrs::Field::from_attributes(&field.attrs)?;
 
         let field_name = FieldName::try_from((field.clone(), attr.rename.as_ref().cloned()))?;
 
@@ -375,7 +375,7 @@ impl<'a> TryFrom<&'a syn::Field> for Full<'a> {
     fn try_from(value: &'a syn::Field) -> Result<Self, Self::Error> {
         Ok(Self::new_self_field(
             value.ident.as_ref().unwrap(),
-            crate::tracing::attrs::Field::from_attributes(&value.attrs)?.print,
+            crate::tracing::derive::attrs::Field::from_attributes(&value.attrs)?.print,
         ))
     }
 }
