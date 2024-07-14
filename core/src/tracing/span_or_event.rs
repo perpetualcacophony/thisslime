@@ -22,7 +22,7 @@ impl<'a> super::error::dispatch::Dispatch for SpanOrEvent<'a> {
                 let tracing_span = span.construct();
                 let _enter = tracing_span.enter();
 
-                span.inner().dispatch();
+                span.inner().dispatch()
             }
             Self::Event(event) => event.construct(),
         }

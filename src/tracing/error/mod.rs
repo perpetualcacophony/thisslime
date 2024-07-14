@@ -2,10 +2,10 @@ pub trait TracingError {
     fn trace(&self);
 }
 
-impl<T: dispatch::Dispatch> TracingError for T {
+impl<T: Dispatch> TracingError for T {
     fn trace(&self) {
         self.dispatch();
     }
 }
 
-pub mod dispatch;
+pub use thisslime_core::tracing::error::dispatch::Dispatch;

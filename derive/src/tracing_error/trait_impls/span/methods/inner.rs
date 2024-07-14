@@ -24,7 +24,7 @@ pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ImplItemFn> {
                         Ok::<syn::Arm, syn::Error>(syn::parse_quote!(
                             Self::#name(ref inner) => {
                                 ::tracing::event!(#level, "{}", inner.to_string());
-                                ::thisslime::thisslime_core::tracing::derive::DummyEvent
+                                &::thisslime::thisslime_core::tracing::derive::DummyEvent as &dyn ::thisslime::tracing::ToSpanOrEvent
                             }
                         ))
                     } else {

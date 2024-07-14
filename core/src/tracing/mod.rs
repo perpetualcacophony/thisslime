@@ -15,11 +15,3 @@ pub trait Span {
 
 pub mod span_or_event;
 pub use span_or_event::{SpanOrEvent, ToSpanOrEvent};
-
-macro_rules! ad_hoc_event {
-    ($name:ident, $error:ty, $level:expr) => {
-        paste::paste! {
-            struct ThisslimeAdHocError
-        }
-    };
-}
