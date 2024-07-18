@@ -1,17 +1,2 @@
-[package]
-name = "thisslime"
-version = "0.2.0"
-edition = "2021"
-
-[dependencies]
-thisslime-derive = { path = "./derive", optional = true }
-thisslime-core = { path = "./core" }
-tracing = { version = "0.1.40", optional = true }
-
-[features]
-default = ["derive", "tracing"]
-tracing = ["thisslime-derive?/tracing", "thisslime-core/tracing", "dep:tracing"]
-derive = ["dep:thisslime-derive", "thisslime-core/derive"]
-
-[dev-dependencies]
-tracing-test = "0.2.5"
+[workspace]
+members = ["thisslime", "thisslime_core", "thisslime_derive"]
