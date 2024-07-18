@@ -1,5 +1,3 @@
-use std::fmt::Display;
-
 pub trait ToSpanOrEvent {
     fn to_span_or_event(&self) -> SpanOrEvent<'_>;
 }

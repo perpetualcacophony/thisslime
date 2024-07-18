@@ -4,8 +4,6 @@ use syn::spanned::Spanned;
 use core::tracing::derive;
 
 pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ImplItemFn> {
-    let span = derive::attrs::Span::from_attributes(&input.attrs)?;
-
     let body: Vec<syn::Stmt> = match input.data {
         syn::Data::Enum(ref data) => {
             let match_arms: Vec<syn::Arm> = data
