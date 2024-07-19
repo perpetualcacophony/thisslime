@@ -1,7 +1,7 @@
 use attribute_derive::FromAttr;
 use syn::spanned::Spanned;
 
-use core::tracing::derive;
+use crate::tracing_error::derive;
 
 pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ImplItemFn> {
     let body: Vec<syn::Stmt> = match input.data {

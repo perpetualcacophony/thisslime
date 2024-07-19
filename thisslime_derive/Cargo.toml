@@ -3,9 +3,8 @@ name = "thisslime-derive"
 version = "0.3.0"
 edition = "2021"
 
-[dependencies.core]
+[dependencies.thisslime-core]
 version = "=0.3.0"
-package = "thisslime-core"
 path = "../thisslime_core"
 features = [
     "derive",
@@ -25,4 +24,4 @@ proc-macro = true
 
 [features]
 default = []
-tracing = ["core/tracing"]
+tracing = ["thisslime-core/tracing"]

@@ -1,6 +1,8 @@
 use proc_macro2::TokenStream;
 use quote::TokenStreamExt;
 
+use thisslime_core::tracing::derive;
+
 mod event;
 mod span;
 mod to_span_or_event;

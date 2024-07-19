@@ -1,5 +1,5 @@
+use crate::tracing_error::derive;
 use attribute_derive::FromAttr;
-use core::tracing::derive;
 use derive::{attrs, model};
 
 pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ImplItemFn> {
