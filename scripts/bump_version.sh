@@ -16,4 +16,7 @@ VERSION="$MAJOR.$MINOR.$PATCH"
 
 ./scripts/set_version.sh $VERSION
 
+git branch "release/v$VERSION"
+git checkout "release/v$VERSION"
+
 echo $VERSION
