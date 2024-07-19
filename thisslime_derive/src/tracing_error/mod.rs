@@ -1,7 +1,9 @@
 use proc_macro2::TokenStream;
 use quote::TokenStreamExt;
 
-mod trait_impls;
+mod event;
+mod span;
+mod to_span_or_event;
 
 pub fn derive(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let input = syn::parse_macro_input!(input as syn::DeriveInput);
@@ -21,7 +23,27 @@ fn expanded(input: &syn::DeriveInput) -> TokenStream {
 fn items(input: &syn::DeriveInput) -> syn::Result<Vec<syn::Item>> {
     let mut items = Vec::new();
 
-    trait_impls::add_to_items(&mut items, input)?;
+    items.push(to_span_or_event::quote(input)?);
+
+    if is_span(input) {
+        items.push(span::quote(input)?);
+    } else {
+        items.push(event::quote(input)?);
+    }
 
     Ok(items)
+}
+
+pub fn is_span(input: &syn::DeriveInput) -> bool {
+    if any_attr(&input.attrs, "span") {
+        true
+    } else if !any_attr(&input.attrs, "event") && matches!(&input.data, syn::Data::Enum(..)) {
+        true
+    } else {
+        false
+    }
+}
+
+fn any_attr(attrs: &[syn::Attribute], ident: &str) -> bool {
+    attrs.into_iter().any(|attr| attr.path().is_ident(ident))
 }

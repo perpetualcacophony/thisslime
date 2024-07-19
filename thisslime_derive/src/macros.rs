@@ -2,7 +2,7 @@ macro_rules! impl_trait {
     { $trait:path=> $([ $( $item:tt)+ ])* } => {
         $( import_item!{ $( $item )* } )*
 
-        pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ItemImpl> {
+        pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::Item> {
             let items = vec![
                 $( quote_item!( $( $item )*, input ) ),*
             ];
