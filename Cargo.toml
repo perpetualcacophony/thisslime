@@ -1,5 +1,5 @@
 [workspace]
-members = ["thisslime", "thisslime_core", "thisslime_derive"]
+members = ["thisslime", "thisslime-core", "thisslime-derive"]
 resolver = "2"
 
 [workspace.package]

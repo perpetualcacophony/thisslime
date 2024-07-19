@@ -8,12 +8,12 @@ license-file.workspace = true
 
 [dependencies.thisslime-derive]
 version = "=0.3.0"
-path = "../thisslime_derive"
+path = "../thisslime-derive"
 optional = true
 
 [dependencies.thisslime-core]
 version = "=0.3.0"
-path = "../thisslime_core"
+path = "../thisslime-core"
 
 [dependencies]
 tracing = { version = "0.1.40", optional = true }

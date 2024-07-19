@@ -8,7 +8,7 @@ license-file.workspace = true
 
 [dependencies.thisslime-core]
 version = "=0.3.0"
-path = "../thisslime_core"
+path = "../thisslime-core"
 features = [
     "derive",
 ]
