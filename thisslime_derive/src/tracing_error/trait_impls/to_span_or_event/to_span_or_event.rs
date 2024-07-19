@@ -1,5 +1,5 @@
 pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ImplItemFn> {
-    let variant: syn::Ident = if super::super::super::is_span(input) {
+    let variant: syn::Ident = if super::super::is_span(input) {
         syn::parse_quote!(Span)
     } else {
         syn::parse_quote!(Event)
