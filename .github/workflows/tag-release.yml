@@ -22,6 +22,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - uses: fregante/setup-git-user@v2
+
       - name: Remove rc from version
         run: ./scripts/remove_rc.sh
 
