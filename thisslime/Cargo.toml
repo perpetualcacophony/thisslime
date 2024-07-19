@@ -1,13 +1,15 @@
 [package]
 name = "thisslime"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 
 [dependencies.thisslime-derive]
+version = "=0.3.0"
 path = "../thisslime_derive"
 optional = true
 
 [dependencies.thisslime-core]
+version = "=0.3.0"
 path = "../thisslime_core"
 
 [dependencies]
