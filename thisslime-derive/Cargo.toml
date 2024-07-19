@@ -6,12 +6,6 @@ authors.workspace = true
 repository.workspace = true
 license-file.workspace = true
 
-[dependencies.thisslime-core]
-path = "../thisslime-core"
-features = ["derive"]
-
-dependencies.thisslime-core.version = "=0.3.0"
-
 [dependencies]
 attribute-derive = { git = "https://github.com/perpetualcacophony/attribute-derive" }
 heck = "0.5.0"
@@ -20,6 +14,9 @@ proc-macro2 = "1.0.85"
 quote = "1.0.36"
 syn = "2.0.66"
 tracing = "0.1.40"
+thisslime-core.version = "=0.4.0"
+thisslime-core.path = "../thisslime-core"
+thisslime-core.features = ["derive"]
 
 [lib]
 proc-macro = true

@@ -8,11 +8,11 @@ license-file.workspace = true
 
 [dependencies]
 tracing = { version = "0.1.40", optional = true }
-thisslime-derive.version = "=0.3.0"
+thisslime-derive.version = "=0.4.0"
 thisslime-derive.path = "../thisslime-derive"
 thisslime-derive.optional = true
 thisslime-core.path = "../thisslime-core"
-thisslime-core.version = "=0.3.0"
+thisslime-core.version = "=0.4.0"
 
 [features]
 default = ["derive", "tracing"]
