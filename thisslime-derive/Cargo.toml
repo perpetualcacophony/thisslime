@@ -7,11 +7,10 @@ repository.workspace = true
 license-file.workspace = true
 
 [dependencies.thisslime-core]
-version = "=0.3.0"
 path = "../thisslime-core"
-features = [
-    "derive",
-]
+features = ["derive"]
+
+dependencies.thisslime-core.version = "=0.3.0"
 
 [dependencies]
 attribute-derive = { git = "https://github.com/perpetualcacophony/attribute-derive" }

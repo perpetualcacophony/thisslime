@@ -1,3 +1,0 @@
-thisslime-core
-thisslime-derive
-thisslime
