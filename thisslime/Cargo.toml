@@ -9,11 +9,11 @@ description.workspace = true
 
 [dependencies]
 tracing = { version = "0.1.40", optional = true }
-thisslime-derive.version = "=0.5.0-rc1"
+thisslime-derive.version = "=0.5.0-rc1-rc2"
 thisslime-derive.path = "../thisslime-derive"
 thisslime-derive.optional = true
 thisslime-core.path = "../thisslime-core"
-thisslime-core.version = "=0.5.0-rc1"
+thisslime-core.version = "=0.5.0-rc1-rc2"
 
 [features]
 default = ["derive", "tracing"]
