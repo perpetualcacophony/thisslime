@@ -14,9 +14,11 @@ fi
 
 VERSION="$MAJOR.$MINOR.$PATCH"
 
-./scripts/set_version.sh $VERSION
-
 git branch "release/v$VERSION"
 git checkout "release/v$VERSION"
+
+./scripts/set_version.sh "$VERSION-rc1"
+
+git commit -m "bumped version to release candidate"
 
 echo $VERSION
