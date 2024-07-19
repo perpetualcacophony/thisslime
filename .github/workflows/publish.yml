@@ -1,0 +1,25 @@
+name: Publish to crates.io
+
+on:
+  push:
+    tags: [ 'v[0-9]+.[0-9]+.[0-9]+' ]
+    
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      GIT_REF: ${{github.ref_name}}
+      CARGO_REGISTRY_TOKEN: ${{secrets.CARGO_REGISTRY_TOKEN}}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install rust
+        uses: dtolnay/rust-toolchain@nightly
+
+      - name: Cache rust
+        uses: Swatinem/rust-cache@v2
+
+      - name: Publish
+        run: cargo publish
