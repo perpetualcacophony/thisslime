@@ -1,12 +1,10 @@
-[workspace]
-members = ["thisslime", "thisslime-core", "thisslime-derive"]
-resolver = "2"
+workspace.members = ["thisslime", "thisslime-core", "thisslime-derive"]
+workspace.resolver = "2"
 
-[workspace.package]
-authors = ["perpetualcacophony"]
-repository = "https://github.com/perpetualcacophony/thisslime"
-readme = "README.md"
-license-file = "LICENSE.txt"
-edition = "2021"
+workspace.package.authors = ["perpetualcacophony"]
+workspace.package.repository = "https://github.com/perpetualcacophony/thisslime"
+workspace.package.readme = "README.md"
+workspace.package.license-file = "LICENSE.txt"
+workspace.package.edition = "2021"
 
 workspace.package.version = "0.3.0"

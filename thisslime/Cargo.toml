@@ -6,19 +6,13 @@ authors.workspace = true
 repository.workspace = true
 license-file.workspace = true
 
-[dependencies.thisslime-derive]
-path = "../thisslime-derive"
-optional = true
-
-dependencies.thisslime-derive.version = "=0.3.0"
-
-[dependencies.thisslime-core]
-path = "../thisslime-core"
-
-dependencies.thisslime-core.version = "=0.3.0"
-
 [dependencies]
 tracing = { version = "0.1.40", optional = true }
+thisslime-derive.version = "=0.3.0"
+thisslime-derive.path = "../thisslime-derive"
+thisslime-derive.optional = true
+thisslime-core.path = "../thisslime-core"
+thisslime-core.version = "=0.3.0"
 
 [features]
 default = ["derive", "tracing"]
