@@ -1,5 +1,5 @@
 impl_trait! {
-    Span=>
+    ::thisslime::tracing::Span =>
     [fn construct()]
     [fn inner()]
 }

@@ -1,5 +1,5 @@
 macro_rules! impl_trait {
-    { $trait:ident=> $([ $( $item:tt)+ ])* } => {
+    { $trait:path=> $([ $( $item:tt)+ ])* } => {
         mod methods {
             $( import_item!{ $( $item )* } )*
         }
