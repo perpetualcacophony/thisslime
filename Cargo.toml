@@ -1,3 +1,11 @@
 [workspace]
 members = ["thisslime", "thisslime_core", "thisslime_derive"]
 resolver = "2"
+
+[workspace.package]
+version = "0.3.0"
+authors = ["perpetualcacophony"]
+repository = "https://github.com/perpetualcacophony/thisslime"
+readme = "README.md"
+license-file = "LICENSE.txt"
+edition = "2021"

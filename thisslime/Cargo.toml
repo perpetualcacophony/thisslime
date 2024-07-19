@@ -1,7 +1,10 @@
 [package]
 name = "thisslime"
-version = "0.3.0"
-edition = "2021"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+repository.workspace = true
+license-file.workspace = true
 
 [dependencies.thisslime-derive]
 version = "=0.3.0"
