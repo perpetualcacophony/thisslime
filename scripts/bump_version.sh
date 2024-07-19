@@ -19,6 +19,6 @@ git checkout "release/v$VERSION"
 
 ./scripts/set_version.sh "$VERSION-rc1"
 
-git commit -a -m "bumped version to release candidate"
+git commit -a -m "bumped version to release candidate 1"
 
 echo $VERSION

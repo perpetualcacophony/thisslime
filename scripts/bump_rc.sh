@@ -6,4 +6,5 @@ VERSION=$(sed -En 's|version = "(.+)"|\1|p' ./Cargo.toml)
 
 if [ -n "$RC" ]; then
     ./scripts/set_version.sh "$VERSION-rc$((RC+1))"
+    git commit -a -m "bumped version to release candidate $RC"
 fi
