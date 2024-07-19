@@ -37,13 +37,11 @@ fn items(input: &syn::DeriveInput) -> syn::Result<Vec<syn::Item>> {
 pub fn is_span(input: &syn::DeriveInput) -> bool {
     if any_attr(&input.attrs, "span") {
         true
-    } else if !any_attr(&input.attrs, "event") && matches!(&input.data, syn::Data::Enum(..)) {
-        true
     } else {
-        false
+        !any_attr(&input.attrs, "event") && matches!(&input.data, syn::Data::Enum(..))
     }
 }
 
 fn any_attr(attrs: &[syn::Attribute], ident: &str) -> bool {
-    attrs.into_iter().any(|attr| attr.path().is_ident(ident))
+    attrs.iter().any(|attr| attr.path().is_ident(ident))
 }
