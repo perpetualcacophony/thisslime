@@ -1,3 +1,6 @@
+#[macro_use]
+mod macros;
+
 #[cfg(feature = "tracing")]
 mod tracing_error;
 
