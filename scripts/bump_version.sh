@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-MAJOR=$(sed -En 's|workspace.package.version = "([0-9]+).[0-9]+.[0-9]+"|\1|p' ./Cargo.toml)
-MINOR=$(sed -En 's|workspace.package.version = "[0-9]+.([0-9]+).[0-9]+"|\1|p' ./Cargo.toml)
-PATCH=$(sed -En 's|workspace.package.version = "[0-9]+.[0-9]+.([0-9]+)"|\1|p' ./Cargo.toml)
+MAJOR=$(sed -En 's|version = "([0-9]+).[0-9]+.[0-9]+"|\1|p' ./Cargo.toml)
+MINOR=$(sed -En 's|version = "[0-9]+.([0-9]+).[0-9]+"|\1|p' ./Cargo.toml)
+PATCH=$(sed -En 's|version = "[0-9]+.[0-9]+.([0-9]+)"|\1|p' ./Cargo.toml)
 
 if [[ "$1" == "minor" ]]; then
     ((MINOR++))
