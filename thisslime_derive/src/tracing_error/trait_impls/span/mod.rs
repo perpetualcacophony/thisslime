@@ -1,12 +1,8 @@
-mod methods;
+#[macro_use]
+mod macros;
 
-pub fn quote(input: &syn::DeriveInput) -> syn::Result<syn::ItemImpl> {
-    let ident = &input.ident;
-    let methods = methods::list(input)?;
-
-    Ok(syn::parse_quote!(
-        impl ::thisslime::tracing::Span for #ident {
-            #(#methods)*
-        }
-    ))
+impl_trait! {
+    Span=>
+    [fn construct()]
+    [fn inner()]
 }
