@@ -3,9 +3,14 @@ name = "thisslime"
 version = "0.2.0"
 edition = "2021"
 
+[dependencies.thisslime-derive]
+path = "../thisslime_derive"
+optional = true
+
+[dependencies.thisslime-core]
+path = "../thisslime_core"
+
 [dependencies]
-thisslime-derive = { path = "../thisslime_derive", optional = true }
-thisslime-core = { path = "../thisslime_core" }
 tracing = { version = "0.1.40", optional = true }
 
 [features]
